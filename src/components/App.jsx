@@ -6,19 +6,12 @@ import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
   addContact = value => {
-    console.log(value);
     const contact = { id: nanoid(), name: value.name, number: value.number };
-    console.log(contact);
     if (
       this.state.contacts.filter(el =>
         el.name.toLocaleLowerCase().includes(value.name.toLocaleLowerCase())
@@ -33,7 +26,6 @@ export class App extends Component {
   };
 
   filter = e => {
-    console.log(e.target.value);
     this.setState({ filter: e.target.value });
   };
 
@@ -57,8 +49,6 @@ export class App extends Component {
           display: 'flex',
           flexDirection: 'column',
           padding: 20,
-          // justifyContent: 'center',
-          // alignItems: 'center',
           fontSize: 40,
           color: '#010101',
         }}
