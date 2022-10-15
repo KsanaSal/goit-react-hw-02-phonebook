@@ -10,7 +10,7 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = value => {
+  addContact = (value, {resetForm}) => {
     const contact = { id: nanoid(), name: value.name, number: value.number };
     if (
       this.state.contacts.filter(el =>
@@ -23,6 +23,7 @@ export class App extends Component {
     } else {
       alert(`${value.name} is already in contacts`);
     }
+    resetForm()
   };
 
   filter = e => {
