@@ -49,4 +49,8 @@ font-size: 24px;
 padding: 4px;
 margin-top: 20px;
 box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.1);
+&:hover{
+    background-color: #0442DC;
+    color: #fff;
+}
 `

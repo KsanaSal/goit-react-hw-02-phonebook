@@ -1,13 +1,16 @@
-import { List, ListItem } from "./ContactList.styled";
+import { List, ListItem, Button, ListItemWrapper } from './ContactList.styled';
 
-export const ContactList = ({ contacts }) => {
+export const ContactList = ({ contacts, deleteContact }) => {
   console.log(contacts);
   return (
     <List>
       {contacts.map(contact => {
         return (
           <ListItem key={contact.id}>
-            {contact.name}: {contact.number}
+            <ListItemWrapper>
+              {contact.name}: {contact.number}
+              <Button type="button" onClick={() => deleteContact(contact.id)}>Delete</Button>
+            </ListItemWrapper>
           </ListItem>
         );
       })}

@@ -13,17 +13,23 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = value => {
     console.log(value);
     const contact = { id: nanoid(), name: value.name, number: value.number };
     console.log(contact);
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+    if (
+      this.state.contacts.filter(el =>
+        el.name.toLocaleLowerCase().includes(value.name.toLocaleLowerCase())
+      ).length === 0
+    ) {
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts],
+      }));
+    } else {
+      alert(`${value.name} is already in contacts`);
+    }
   };
 
   filter = e => {
@@ -37,6 +43,10 @@ export class App extends Component {
         .toLocaleLowerCase()
         .includes(this.state.filter.toLocaleLowerCase())
     );
+  };
+
+  deleteContact = id => {
+    this.setState({ contacts: this.state.contacts.filter(el => el.id !== id) });
   };
 
   render() {
@@ -58,7 +68,10 @@ export class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={this.filter} />
-        <ContactList contacts={this.filteredList()} />
+        <ContactList
+          contacts={this.filteredList()}
+          deleteContact={this.deleteContact}
+        />
       </div>
     );
   }
