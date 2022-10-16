@@ -26,7 +26,7 @@ export class App extends Component {
     resetForm()
   };
 
-  filter = e => {
+  filterChange = e => {
     this.setState({ filter: e.target.value });
   };
 
@@ -58,7 +58,7 @@ export class App extends Component {
         <ContactForm addContact={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter filter={this.filter} />
+        <Filter filter={this.state.filter} filterChange={ this.filterChange} />
         <ContactList
           contacts={this.filteredList()}
           deleteContact={this.deleteContact}
